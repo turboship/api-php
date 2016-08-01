@@ -1,0 +1,41 @@
+{
+  "name": "turboship/api-php",
+  "description": "A Simple PHP Wrapper For The TurboShip API",
+  "keywords": [
+    "turboship",
+    "php",
+    "api",
+    "turboship-api"
+  ],
+  "license": "MIT",
+  "type": "library",
+  "homepage": "https://github.com/turboship/api-php",
+  "authors":[
+    {
+      "name": "James Weston"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^6.2",
+    "vlucas/phpdotenv": "^2.3",
+    "jamesvweston/php-utilities": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "TurboShip\\Api\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TurboShip\\Api\\Tests\\": "tests"
+    }
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable" : true
+}
