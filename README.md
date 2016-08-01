@@ -1,8 +1,8 @@
-# auth-php
-A Basic, Low-Level PHP Wrapper For Turboship's API
+# api-php
+A Simple PHP Wrapper For The TurboShip API
 
 ## Installation
 
 ```
-composer require turboship/auth-php
+composer require turboship/api-php
 ```
