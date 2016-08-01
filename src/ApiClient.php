@@ -13,7 +13,7 @@ use TurboShip\Api\Exceptions\UnauthorizedClientException;
 use TurboShip\Api\Http\HttpRequest;
 use Dotenv\Dotenv;
 
-class Api
+class ApiClient
 {
 
     /**

@@ -2,21 +2,21 @@
 
 namespace TurboShip\Api\tests;
 
-use TurboShip\Api\Api;
+use TurboShip\Api\ApiClient;
 
 class AccessTokenTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
      * @param   bool $test
-     * @return  Api
+     * @return  ApiClient
      */
     public function testENVInstantiation($test = true)
     {
-        $apiClient            = new Api('./');
+        $apiClient            = new ApiClient('./');
         
         if ($test)
-            $this->assertInstanceOf('TurboShip\Api\Api', $apiClient);
+            $this->assertInstanceOf('TurboShip\Api\ApiClient', $apiClient);
         
         return $apiClient;
     }
