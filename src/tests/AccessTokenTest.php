@@ -20,7 +20,10 @@ class AccessTokenTest extends \PHPUnit_Framework_TestCase
         
         return $apiClient;
     }
-    
+
+    /**
+     * Test refreshing the access_token
+     */
     public function testRefreshToken()
     {
         $apiClient            = $this->testENVInstantiation(false);
