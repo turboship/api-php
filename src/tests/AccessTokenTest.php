@@ -31,10 +31,11 @@ class AccessTokenTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('TurboShip\Api\Responses\CreateAccessTokenResponse', $createAccessTokenResponse);
     }
     
-    public function testGetMyAcount()
+    public function testGetMyAccount()
     {
         $apiClient                  = $this->testENVInstantiation(false);
-        $account                    = $apiClient->getAccountForAccessToken();
+        $access_token               = $apiClient->getApiConfiguration()->getAccessToken();
+        $account                    = $apiClient->getAccountForAccessToken($access_token);
         $this->assertInternalType('array', $account);
     }
     

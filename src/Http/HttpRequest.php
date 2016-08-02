@@ -87,6 +87,33 @@ class HttpRequest
             throw $e;
         }
     }
+    
+    public function getAccessTokenForAccount($access_token)
+    {
+        if (is_null($access_token))
+            throw new MissingCredentialException('access_token');
+
+        $urlEndPoint                = $this->apiConfiguration->getAuthEndpoint() . '/accounts/me';
+
+        $data = [
+            'headers' => ['Authorization' => 'Bearer ' . $access_token ]
+        ];
+
+        try 
+        {
+            $response               = $this->guzzle->get($urlEndPoint, $data);
+            return json_decode($response->getBody(), true);
+            
+        } catch (ConnectException $c)
+        {
+            throw $c;
+        } catch (RequestException $e)
+        {
+            throw $e;
+        }
+        
+        
+    }
 
     /**
      * @return CreateAccessTokenResponse

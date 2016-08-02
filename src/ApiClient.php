@@ -131,16 +131,17 @@ class ApiClient
         }
     }
 
+    
     /**
-     * Get the Account with the provided access_token.
+     * Get the Account associated with the provided access_token.
      * Does not validate ApiConfiguration and does not refresh access_token if it's bad
-     * @return array
-     * @throws \Exception
+     * @param   string      $access_token
+     * @return  array
+     * @throws  Exceptions\MissingCredentialException
      */
-    public function getAccountForAccessToken()
+    public function getAccountForAccessToken($access_token)
     {
-        return $this->httpRequest->makeHttpRequest('get', 'accounts/me');
-        
+        return $this->httpRequest->getAccessTokenForAccount($access_token);
     }
 
     /**
