@@ -13,7 +13,7 @@ class AccessTokenTest extends \PHPUnit_Framework_TestCase
      */
     public function testENVInstantiation($test = true)
     {
-        $apiClient            = new ApiClient('./');
+        $apiClient                  = new ApiClient('./');
         
         if ($test)
             $this->assertInstanceOf('TurboShip\Api\ApiClient', $apiClient);
@@ -26,9 +26,16 @@ class AccessTokenTest extends \PHPUnit_Framework_TestCase
      */
     public function testRefreshToken()
     {
-        $apiClient            = $this->testENVInstantiation(false);
-        $createAccessTokenResponse      = $apiClient->refreshAccessToken();
+        $apiClient                  = $this->testENVInstantiation(false);
+        $createAccessTokenResponse  = $apiClient->refreshAccessToken();
         $this->assertInstanceOf('TurboShip\Api\Responses\CreateAccessTokenResponse', $createAccessTokenResponse);
+    }
+    
+    public function testGetMyAcount()
+    {
+        $apiClient                  = $this->testENVInstantiation(false);
+        $account                    = $apiClient->getAccountForAccessToken();
+        $this->assertInternalType('array', $account);
     }
     
     

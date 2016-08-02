@@ -132,6 +132,18 @@ class ApiClient
     }
 
     /**
+     * Get the Account with the provided access_token.
+     * Does not validate ApiConfiguration and does not refresh access_token if it's bad
+     * @return array
+     * @throws \Exception
+     */
+    public function getAccountForAccessToken()
+    {
+        return $this->httpRequest->makeHttpRequest('get', 'accounts/me');
+        
+    }
+
+    /**
      * @return Responses\CreateAccessTokenResponse
      * @throws Exceptions\MissingCredentialException
      * @throws Exceptions\UnauthorizedClientException
