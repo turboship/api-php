@@ -137,7 +137,7 @@ class ApiClient
      * Does not validate ApiConfiguration and does not refresh access_token if it's bad
      * @param   string      $access_token
      * @return  array
-     * @throws  Exceptions\MissingCredentialException
+     * @throws  Exceptions\RequiredFieldMissingException
      */
     public function getAccountForAccessToken($access_token)
     {
@@ -146,7 +146,7 @@ class ApiClient
 
     /**
      * @return Responses\CreateAccessTokenResponse
-     * @throws Exceptions\MissingCredentialException
+     * @throws Exceptions\RequiredFieldMissingException
      * @throws Exceptions\UnauthorizedClientException
      */
     public function refreshAccessToken()

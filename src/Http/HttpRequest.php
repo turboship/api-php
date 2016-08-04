@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use TurboShip\Api\Configuration\ApiConfiguration;
-use TurboShip\Api\Exceptions\MissingCredentialException;
+use TurboShip\Api\Exceptions\RequiredFieldMissingException;
 use TurboShip\Api\Exceptions\UnauthorizedClientException;
 use TurboShip\Api\Requests\CreateAccessTokenRequest;
 use TurboShip\Api\Responses\CreateAccessTokenResponse;
@@ -91,7 +91,7 @@ class HttpRequest
     public function getAccessTokenForAccount($access_token)
     {
         if (is_null($access_token))
-            throw new MissingCredentialException('access_token');
+            throw new RequiredFieldMissingException('ApiConfiguration', 'access_token');
 
         $urlEndPoint                = $this->apiConfiguration->getAuthEndpoint() . '/accounts/me';
 
@@ -117,7 +117,7 @@ class HttpRequest
 
     /**
      * @return CreateAccessTokenResponse
-     * @throws MissingCredentialException
+     * @throws RequiredFieldMissingException
      * @throws UnauthorizedClientException
      */
     public function requestAccessToken()
@@ -126,7 +126,7 @@ class HttpRequest
         try 
         {
             $this->validateCredentials();
-        } catch (MissingCredentialException $e)
+        } catch (RequiredFieldMissingException $e)
         {
             throw $e;
         }
@@ -158,19 +158,19 @@ class HttpRequest
 
 
     /**
-     * @throws MissingCredentialException
+     * @throws RequiredFieldMissingException
      */
     private function validateCredentials()
     {
         if (empty($this->apiConfiguration->getUsername()))
-            throw new MissingCredentialException('username');
+            throw new RequiredFieldMissingException('ApiConfiguration', 'username');
         elseif (empty($this->apiConfiguration->getPassword()))
-            throw new MissingCredentialException('password');
+            throw new RequiredFieldMissingException('ApiConfiguration', 'password');
         elseif (empty($this->apiConfiguration->getClientId())) 
-            throw new MissingCredentialException('clientId');
+            throw new RequiredFieldMissingException('ApiConfiguration', 'clientId');
         elseif (empty($this->apiConfiguration->getClientSecret())) 
-            throw new MissingCredentialException('clientSecret');
+            throw new RequiredFieldMissingException('ApiConfiguration', 'clientSecret');
         elseif (empty($this->apiConfiguration->getScope()))
-            throw new MissingCredentialException('scope');
+            throw new RequiredFieldMissingException('ApiConfiguration', 'scope');
     }
 }
